@@ -24,7 +24,9 @@ my %WriteMakefileArgs = (
   'EXE_FILES' => [],
   'LICENSE' => 'artistic_2',
   'NAME' => 'Dist::Zilla::Plugin::VersionTests',
-  'PREREQ_PM' => {},
+  'PREREQ_PM' => {
+    'Test::Version' => '0.04'
+  },
   'VERSION' => '0.1.0',
   'test' => {
     'TESTS' => 't/*.t'

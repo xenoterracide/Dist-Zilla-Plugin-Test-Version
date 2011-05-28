@@ -20,6 +20,7 @@ no_index:
   file:
     - perlcritic.rc
 requires:
+  Test::Version: 0.04
   perl: 5.006
 resources:
   bugtracker: http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests/issues
