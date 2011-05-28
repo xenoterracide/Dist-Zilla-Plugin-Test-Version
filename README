@@ -4,6 +4,15 @@ NAME
 VERSION
     version 0.1.0
 
+  SYNOPSIS
+    in "dist.ini"
+
+            [VersionTests]
+
+  DESCRIPTION
+    This module will add a Test::Version test as a release test to your
+    module.
+
 AUTHOR
     Caleb Cushing <xenoterracide@gmail.com>
 

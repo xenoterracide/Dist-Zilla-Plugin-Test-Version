@@ -15,6 +15,7 @@ __PACKAGE__->meta->make_immutable;
 
 
 
+
 =pod
 
 =head1 NAME
@@ -24,6 +25,16 @@ Dist::Zilla::Plugin::VersionTests - release Test::Version tests
 =head1 VERSION
 
 version 0.1.0
+
+=head2 SYNOPSIS
+
+in C<dist.ini>
+
+	[VersionTests]
+
+=head2 DESCRIPTION
+
+This module will add a L<Test::Version> test as a release test to your module.
 
 =head1 AUTHOR
 
