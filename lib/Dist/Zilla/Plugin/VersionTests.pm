@@ -11,6 +11,8 @@ extends 'Dist::Zilla::Plugin::InlineFiles';
 __PACKAGE__->meta->make_immutable;
 1;
 
+# ABSTRACT: release Test::Version tests
+
 
 
 =pod
@@ -50,5 +52,3 @@ plan skip_all => "Test::Version required for testing versions"
 	if $@;
 
 version_all_ok;
-
-# ABSTRACT: release Test::Version tests
