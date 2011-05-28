@@ -19,9 +19,11 @@ __[ xt/release/test-version.t ]__
 use 5.006;
 use strict;
 use warnings;
+use Test::More;
 
 eval "use Test::Version";
 plan skip_all => "Test::Version required for testing versions"
 	if $@;
 
-version_all_ok;
+version_all_ok();
+done_testing;
