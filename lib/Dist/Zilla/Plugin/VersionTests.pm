@@ -51,4 +51,4 @@ eval "use Test::Version";
 plan skip_all => "Test::Version required for testing versions"
 	if $@;
 
-version_all_ok;
+version_all_ok();
