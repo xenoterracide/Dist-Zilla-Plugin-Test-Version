@@ -1,0 +1,54 @@
+{
+   "abstract" : "Dist::Zilla::Plugin::VersionTests",
+   "author" : [
+      "Caleb Cushing <xenoterracide@gmail.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930",
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Dist-Zilla-Plugin-VersionTests",
+   "no_index" : {
+      "file" : [
+         "perlcritic.rc"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "perl" : "5.006"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "English" : 0,
+            "File::Find" : 0,
+            "File::Temp" : 0,
+            "Test::More" : 0
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests/issues"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests.git",
+         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests"
+      }
+   },
+   "version" : "0.1.0"
+}
+
