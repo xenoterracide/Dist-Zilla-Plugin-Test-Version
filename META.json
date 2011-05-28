@@ -1,5 +1,5 @@
 {
-   "abstract" : "Dist::Zilla::Plugin::VersionTests",
+   "abstract" : "release Test::Version tests",
    "author" : [
       "Caleb Cushing <xenoterracide@gmail.com>"
    ],
@@ -26,6 +26,8 @@
       },
       "runtime" : {
          "requires" : {
+            "Dist::Zilla::Plugin::InlineFiles" : 0,
+            "Moose" : 0,
             "Test::Version" : "0.04",
             "perl" : "5.006"
          }

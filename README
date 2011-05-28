@@ -1,5 +1,5 @@
 NAME
-    Dist::Zilla::Plugin::VersionTests - Dist::Zilla::Plugin::VersionTests
+    Dist::Zilla::Plugin::VersionTests - release Test::Version tests
 
 VERSION
     version 0.1.0

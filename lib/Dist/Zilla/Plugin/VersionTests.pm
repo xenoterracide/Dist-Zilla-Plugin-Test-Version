@@ -5,17 +5,19 @@ use warnings;
 BEGIN {
 	our $VERSION = '0.1.0'; # VERSION
 }
+use Moose;
+extends 'Dist::Zilla::Plugin::InlineFiles';
 
+__PACKAGE__->meta->make_immutable;
 1;
 
-# ABSTRACT: Dist::Zilla::Plugin::VersionTests
 
-__END__
+
 =pod
 
 =head1 NAME
 
-Dist::Zilla::Plugin::VersionTests - Dist::Zilla::Plugin::VersionTests
+Dist::Zilla::Plugin::VersionTests - release Test::Version tests
 
 =head1 VERSION
 
@@ -35,3 +37,18 @@ This is free software, licensed under:
 
 =cut
 
+
+__DATA__
+__[ xt/release/test-version.t ]__
+#!/usr/bin/perl
+use 5.006;
+use strict;
+use warnings;
+
+eval "use Test::Version";
+plan skip_all => "Test::Version required for testing versions"
+	if $@;
+
+version_all_ok;
+
+# ABSTRACT: release Test::Version tests
