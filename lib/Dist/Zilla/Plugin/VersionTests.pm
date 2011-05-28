@@ -13,6 +13,18 @@ __PACKAGE__->meta->make_immutable;
 
 # ABSTRACT: release Test::Version tests
 
+=head2 SYNOPSIS
+
+in C<dist.ini>
+
+	[VersionTests]
+
+=head2 DESCRIPTION
+
+This module will add a L<Test::Version> test as a release test to your module.
+
+=cut
+
 __DATA__
 __[ xt/release/test-version.t ]__
 #!/usr/bin/perl
