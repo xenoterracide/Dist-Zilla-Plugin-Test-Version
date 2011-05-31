@@ -35,7 +35,7 @@ use Test::More;
 
 eval "use Test::Version";
 plan skip_all => "Test::Version required for testing versions"
-	if $@;
+    if $@;
 
 version_all_ok();
 done_testing;
