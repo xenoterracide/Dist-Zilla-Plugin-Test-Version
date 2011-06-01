@@ -20,16 +20,16 @@ my %WriteMakefileArgs = (
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.30'
   },
-  'DISTNAME' => 'Dist-Zilla-Plugin-VersionTests',
+  'DISTNAME' => 'Dist-Zilla-Plugin-Test-Version',
   'EXE_FILES' => [],
   'LICENSE' => 'artistic_2',
-  'NAME' => 'Dist::Zilla::Plugin::VersionTests',
+  'NAME' => 'Dist::Zilla::Plugin::Test::Version',
   'PREREQ_PM' => {
     'Dist::Zilla::Plugin::InlineFiles' => '0',
     'Moose' => '0',
     'Test::Version' => '0.04'
   },
-  'VERSION' => '0.1.0',
+  'VERSION' => '0.1.1',
   'test' => {
     'TESTS' => 't/*.t'
   }

@@ -1,13 +1,13 @@
 NAME
-    Dist::Zilla::Plugin::VersionTests - release Test::Version tests
+    Dist::Zilla::Plugin::Test::Version - release Test::Version tests
 
 VERSION
-    version 0.1.0
+    version 0.1.1
 
   SYNOPSIS
     in "dist.ini"
 
-            [VersionTests]
+            [Test::Version]
 
   DESCRIPTION
     This module will add a Test::Version test as a release test to your

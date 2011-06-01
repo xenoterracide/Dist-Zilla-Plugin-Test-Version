@@ -15,7 +15,7 @@ license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-name: Dist-Zilla-Plugin-VersionTests
+name: Dist-Zilla-Plugin-Test-Version
 no_index:
   file:
     - perlcritic.rc
@@ -25,6 +25,6 @@ requires:
   Test::Version: 0.04
   perl: 5.006
 resources:
-  bugtracker: http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests/issues
-  repository: git://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests.git
-version: 0.1.0
+  bugtracker: http://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version/issues
+  repository: git://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version.git
+version: 0.1.1

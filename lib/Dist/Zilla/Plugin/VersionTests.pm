@@ -1,9 +1,9 @@
-package Dist::Zilla::Plugin::VersionTests;
+package Dist::Zilla::Plugin::Test::Version;
 use 5.006;
 use strict;
 use warnings;
 BEGIN {
-	our $VERSION = '0.1.0'; # VERSION
+	our $VERSION = '0.1.1'; # VERSION
 }
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
@@ -20,17 +20,17 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Dist::Zilla::Plugin::VersionTests - release Test::Version tests
+Dist::Zilla::Plugin::Test::Version - release Test::Version tests
 
 =head1 VERSION
 
-version 0.1.0
+version 0.1.1
 
 =head2 SYNOPSIS
 
 in C<dist.ini>
 
-	[VersionTests]
+	[Test::Version]
 
 =head2 DESCRIPTION
 

@@ -12,7 +12,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
-   "name" : "Dist-Zilla-Plugin-VersionTests",
+   "name" : "Dist-Zilla-Plugin-Test-Version",
    "no_index" : {
       "file" : [
          "perlcritic.rc"
@@ -44,14 +44,14 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests/issues"
+         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests.git",
-         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-VersionTests"
+         "url" : "git://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version.git",
+         "web" : "http://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version"
       }
    },
-   "version" : "0.1.0"
+   "version" : "0.1.1"
 }
 
