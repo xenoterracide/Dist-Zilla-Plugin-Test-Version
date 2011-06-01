@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Test::Version - release Test::Version tests
 
 VERSION
-    version 0.1.1
+    version 0.1.2
 
   SYNOPSIS
     in "dist.ini"
