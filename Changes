@@ -1,5 +1,7 @@
-Revision history for Dist-Zilla-Plugin-VersionTests
+Revision history for Dist-Zilla-Plugin-Test-Version
 0.1.1     2011-05-31
+	- Rename project to  Dist::Zilla::Plugin::Test::Version
+	- Fix GH#1: Injected test has tabs [Mike Doherty]
 
 0.1.0     2011-05-28
 	- Initial release.
