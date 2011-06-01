@@ -1,4 +1,4 @@
-Revision history for Dist-Zilla-Plugin-VersionTests
+Revision history for Dist-Zilla-Plugin-Test-Version
 {{$NEXT}}
 	- Fix GH#1: Injected test has tabs [Mike Doherty]
 
