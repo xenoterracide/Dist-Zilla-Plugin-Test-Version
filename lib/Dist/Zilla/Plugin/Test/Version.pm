@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::VersionTests;
+package Dist::Zilla::Plugin::Test::Version;
 use 5.006;
 use strict;
 use warnings;
@@ -17,7 +17,7 @@ __PACKAGE__->meta->make_immutable;
 
 in C<dist.ini>
 
-	[VersionTests]
+	[Test::Version]
 
 =head2 DESCRIPTION
 
