@@ -1,5 +1,5 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
-0.1.2     2011-06-01
+0.1.2     2011-06-02
 	- use Test::Version 0.04 in the test
 
 0.1.1     2011-05-31

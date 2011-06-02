@@ -26,7 +26,8 @@ my %WriteMakefileArgs = (
   'NAME' => 'Dist::Zilla::Plugin::Test::Version',
   'PREREQ_PM' => {
     'Dist::Zilla::Plugin::InlineFiles' => '0',
-    'Moose' => '0'
+    'Moose' => '0',
+    'Test::Version' => '0.04'
   },
   'VERSION' => '0.1.2',
   'test' => {

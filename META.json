@@ -28,6 +28,7 @@
          "requires" : {
             "Dist::Zilla::Plugin::InlineFiles" : 0,
             "Moose" : 0,
+            "Test::Version" : "0.04",
             "perl" : "5.006"
          }
       },
