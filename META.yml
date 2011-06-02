@@ -22,7 +22,6 @@ no_index:
 requires:
   Dist::Zilla::Plugin::InlineFiles: 0
   Moose: 0
-  Test::Version: 0.04
   perl: 5.006
 resources:
   bugtracker: http://github.com/xenoterracide/Dist-Zilla-Plugin-Test-Version/issues
