@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 {{$NEXT}}
 
+0.1.2     2011-06-02
+	- use Test::Version 0.04 in the test
+
 0.1.1     2011-05-31
 	- Rename project to  Dist::Zilla::Plugin::Test::Version
 	- Fix GH#1: Injected test has tabs [Mike Doherty]
