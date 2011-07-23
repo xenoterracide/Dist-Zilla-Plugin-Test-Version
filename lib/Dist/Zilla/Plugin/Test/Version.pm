@@ -35,7 +35,7 @@ use Test::More;
 
 BEGIN {
     eval "use Test::Version 0.04";
-    plan skip_all => "Test::Version 0.04 required for testing versions"
+    plan skip_all => "Test::Version 0.04 or later required for testing versions"
         if $@;
 }
 
