@@ -33,9 +33,11 @@ use strict;
 use warnings;
 use Test::More;
 
-eval "use Test::Version 0.04";
-plan skip_all => "Test::Version 0.04 required for testing versions"
-    if $@;
+BEGIN {
+    eval "use Test::Version 0.04";
+    plan skip_all => "Test::Version 0.04 required for testing versions"
+        if $@;
+}
 
-version_all_ok();
+version_all_ok;
 done_testing;
