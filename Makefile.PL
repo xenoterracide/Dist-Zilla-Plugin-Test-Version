@@ -28,6 +28,7 @@ my %WriteMakefileArgs = (
     'Dist::Zilla::Plugin::InlineFiles' => '0',
     'Moose' => '0',
     'Test::Version' => '0.04'
+    'Test::Requires' => '0',
   },
   'VERSION' => '0.1.3',
   'test' => {
