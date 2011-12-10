@@ -33,11 +33,9 @@ use strict;
 use warnings;
 use Test::More;
 
-BEGIN {
-    eval "use Test::Version 0.04";
-    plan skip_all => "Test::Version 0.04 or later required for testing versions"
-        if $@;
-}
+use Test::Requires {
+    'Test::Version' => 0.04,
+};
 
 version_all_ok;
 done_testing;
