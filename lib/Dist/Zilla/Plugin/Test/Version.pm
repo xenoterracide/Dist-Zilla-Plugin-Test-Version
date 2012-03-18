@@ -8,9 +8,7 @@ use namespace::autoclean;
 
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
-with qw(
-	Dist::Zilla::Role::TextTemplate
-);
+with 'Dist::Zilla::Role::TextTemplate';
 
 around add_file => sub {
 	my ( $orig, $self, $file ) = @_;
