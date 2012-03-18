@@ -67,7 +67,7 @@ use warnings;
 use Test::More;
 
 use Test::Requires {
-    'Test::Version' => 0.04,
+    'Test::Version' => 1.002,
 };
 
 BEGIN {
