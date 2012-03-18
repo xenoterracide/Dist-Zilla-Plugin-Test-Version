@@ -8,7 +8,6 @@ my $tzil
 	= Builder->from_config(
 		{
 			dist_root    => 'corpus/a',
-			tempdir_root => '.build',
 		},
 		{
 			add_files => {
