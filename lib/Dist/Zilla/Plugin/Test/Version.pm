@@ -70,15 +70,13 @@ use Test::Requires {
     'Test::Version' => 1.002,
 };
 
-BEGIN {
-	Test::Version->import(
-		'version_all_ok',
-		{
-			is_strict   => {{ $is_strict }},
-			has_version => {{ $has_version }},
-		}
-	);
-}
+Test::Version->import(
+	'version_all_ok',
+	{
+		is_strict   => {{ $is_strict }},
+		has_version => {{ $has_version }},
+	}
+);
 
 version_all_ok;
 done_testing;
