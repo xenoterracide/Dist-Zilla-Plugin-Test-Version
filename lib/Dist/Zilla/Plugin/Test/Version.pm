@@ -67,16 +67,22 @@ use warnings;
 use Test::More;
 
 use Test::Requires {
-    'Test::Version' => 1.002,
+    'Test::Version' => 1,
+    'version'       => 0.86,
 };
 
-Test::Version->import(
-	'version_all_ok',
-	{
-		is_strict   => {{ $is_strict }},
-		has_version => {{ $has_version }},
-	}
-);
+my @imports = ( 'version_all_ok' );
+
+my $params = {
+    is_strict   => {{ $is_strict }},
+    has_version => {{ $has_version }},
+};
+
+push @imports, $params
+    if version->parse( $Test::Version::VERSION ) >= version->parse('1.002');
+
+
+Test::Version->import(@imports);
 
 version_all_ok;
 done_testing;
