@@ -2,6 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 use Test::DZil;
+use Test::Script 1.05;
 
 my $tzil
 	= Builder->from_config(
@@ -18,14 +19,17 @@ my $tzil
 
 $tzil->build;
 
-my $release_dir
+my $fn
 	= $tzil
 	->tempdir
 	->subdir('build')
 	->subdir('xt')
 	->subdir('release')
+	->file('test-version.t')
 	;
 
-ok ( -e $release_dir . '/test-version.t', 'test file exists');
+ok ( -e $fn, 'test file exists');
+
+script_compiles( '' .$fn->relative, 'check test compiles' );
 
 done_testing;
