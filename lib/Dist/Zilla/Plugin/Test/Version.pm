@@ -2,11 +2,46 @@ package Dist::Zilla::Plugin::Test::Version;
 use 5.006;
 use strict;
 use warnings;
-BEGIN {
-	# VERSION
-}
+use namespace::autoclean;
+
+# VERSION
+
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
+with qw(
+	Dist::Zilla::Role::TextTemplate
+);
+
+around add_file => sub {
+	my ( $orig, $self, $file ) = @_;
+
+	$self->$orig(
+		Dist::Zilla::File::InMemory->new({
+			name    => $file->name,
+			content => $self->fill_in_string(
+				$file->content,
+				{
+					is_strict   => \$self->is_strict,
+					has_version => \$self->has_version,
+				},
+			),
+		})
+	);
+};
+
+has is_strict => (
+	is => 'ro',
+	isa => 'Bool',
+	lazy => 1,
+	default => sub { 0 },
+);
+
+has has_version => (
+	is => 'ro',
+	isa => 'Bool',
+	lazy => 1,
+	default => sub { 1 },
+);
 
 __PACKAGE__->meta->make_immutable;
 1;
@@ -36,6 +71,16 @@ use Test::More;
 use Test::Requires {
     'Test::Version' => 0.04,
 };
+
+BEGIN {
+	Test::Version->import(
+		'version_all_ok',
+		{
+			is_strict   => {{ $is_strict }},
+			has_version => {{ $has_version }},
+		}
+	);
+}
 
 version_all_ok;
 done_testing;
