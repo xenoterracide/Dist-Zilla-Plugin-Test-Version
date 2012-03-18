@@ -2,6 +2,11 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.002000  2012-03-18
+	- add some basic tests
+	- require use of Test::Version 1
+	- allow use of Test::Version 1.002 features, future versions may require 1.2
+
 0.001004  2011-12-10
 	- use Test::Requires rather than an eval. GH #3 [Karen Etheridge]
 	- change to perl floating point semantic version style due to toolchain
