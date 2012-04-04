@@ -20,8 +20,7 @@ around add_file => sub {
 				$file->content,
 				{
 					name        => __PACKAGE__,
-					version     =>
-						$Dist::Zilla::Plugin::Test::Version::VERSION
+					version     => __PACKAGE__->VERSION
 						|| 'bootstrapped version'
 						,
 					is_strict   => \$self->is_strict,
