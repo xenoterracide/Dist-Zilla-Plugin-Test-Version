@@ -2,6 +2,10 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.002001  2012-04-03
+	- do not use Test::Requires in generated test, now fail test if
+	  Test::Version not installed and running the release test
+
 0.002000  2012-03-18
 	- add some basic tests
 	- require use of Test::Version 1
