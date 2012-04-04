@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.002002  2012-04-04
+	- fix unintentional underscore in last release
+
 0.002001  2012-04-03
 	- do not use Test::Requires in generated test, now fail test if
 	  Test::Version not installed and running the release test
