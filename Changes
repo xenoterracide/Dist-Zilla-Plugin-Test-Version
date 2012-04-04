@@ -2,6 +2,10 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.002003  2012-04-04
+	- trim code for inserting the generated version comment
+	- recut just to insure fixed externally generated tests
+
 0.002002  2012-04-04
 	- fix unintentional underscore in last release
 
