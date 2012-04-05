@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.002004  2012-04-05
+	- remove erroneous tab in test output and add a regression test GH #5
+
 0.002003  2012-04-04
 	- trim code for inserting the generated version comment
 	- recut just to insure fixed externally generated tests
