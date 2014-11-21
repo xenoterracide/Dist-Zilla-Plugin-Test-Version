@@ -85,6 +85,10 @@ set L<Test::Version is_strict|Test::Version/is_strict>
 
 set L<Test::Version has_version|Test::Version/has_version>
 
+=method register_prereqs
+
+Register L<Test::Version> as an a development prerequisite.
+
 =cut
 
 __DATA__
