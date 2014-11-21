@@ -8,7 +8,10 @@ use namespace::autoclean;
 
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
-with 'Dist::Zilla::Role::TextTemplate';
+with qw(
+	Dist::Zilla::Role::TextTemplate
+	Dist::Zilla::Role::PrereqSource
+);
 
 around add_file => sub {
 	my ( $orig, $self, $file ) = @_;
@@ -30,6 +33,18 @@ around add_file => sub {
 		})
 	);
 };
+
+sub register_prereqs {
+	my $self = shift;
+	$self->zilla->register_prereqs({
+			type  => 'requires',
+			phase => 'develop',
+		},
+		'Test::More'    => 0,
+		'Test::Version' => 0,
+	);
+	return;
+}
 
 has is_strict => (
 	is => 'ro',
