@@ -41,7 +41,7 @@ sub register_prereqs {
 			phase => 'develop',
 		},
 		'Test::More'    => 0,
-		'Test::Version' => 0,
+		'Test::Version' => 1,
 	);
 	return;
 }
