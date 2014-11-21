@@ -5,7 +5,7 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 0.003000  2014-11-20
 	- add Test::Version to DevelopRequires in consumer modules
 	- remove use of eval to prevent Test::Version from being added to
-	  TestRequires. Don't use ExtraTests if you don't want this behavior
+	  TestRequires. Don't use ExtraTests if you don't want this behavior GH #6
 
 0.002004  2012-04-05
 	- remove erroneous tab in test output and add a regression test GH #5
