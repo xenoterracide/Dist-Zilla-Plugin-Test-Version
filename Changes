@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.003001  2014-11-20
+	- didn't depend on Test::Version for testing
+
 0.003000  2014-11-20
 	- add Test::Version to DevelopRequires in consumer modules
 	- remove use of eval to prevent Test::Version from being added to
