@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Test::Version - release Test::Version tests
 
 # VERSION
 
-version 0.003001
+version 0.04
 
 # SYNOPSIS
 
