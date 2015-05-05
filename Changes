@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+0.04      2015-05-05
+  - New maintainer PLICEASE
+
 0.003001  2014-11-20
 	- didn't depend on Test::Version for testing
 
