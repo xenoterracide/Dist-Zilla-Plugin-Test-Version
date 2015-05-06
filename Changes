@@ -1,7 +1,10 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
-  - Add suppor for filename_match property
+
+1.00      2015-05-06
+  - Add support for filename_match property
+  - Add support for dzil file finder (finder property)
 
 0.04      2015-05-05
   - New maintainer PLICEASE
