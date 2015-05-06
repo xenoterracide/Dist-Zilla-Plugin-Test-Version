@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
+  - Add suppor for filename_match property
 
 0.04      2015-05-05
   - New maintainer PLICEASE

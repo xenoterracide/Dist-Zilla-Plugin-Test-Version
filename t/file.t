@@ -18,12 +18,14 @@ my $tzil = Builder->from_config(
         ['GatherDir'],
         ['Test::Version']
       ),
-      'source/lib/Foo/pm' => "package Foo;\nour \$VERSION = 1.00;\n1;\n",
+      'source/lib/Foo.pm' => "package Foo;\nour \$VERSION = 1.00;\n1;\n",
     }
   },
 );
 
 $tzil->build;
+
+is $tzil->prereqs->as_string_hash->{develop}->{requires}->{'Test::Version'}, '1', 'needs Test::Version 1';
 
 my $fn = $tzil
   ->tempdir
@@ -34,6 +36,8 @@ my $fn = $tzil
   ;
 
 ok ( -e $fn, 'test file exists');
+
+note $fn->slurp;
 
 do {
   local $CWD = $tzil->tempdir->subdir('build')->stringify;

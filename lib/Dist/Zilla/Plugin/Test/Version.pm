@@ -22,12 +22,13 @@ around add_file => sub {
       content => $self->fill_in_string(
         $file->content,
         {
-          name        => __PACKAGE__,
-          version     => __PACKAGE__->VERSION
+          name           => __PACKAGE__,
+          version        => __PACKAGE__->VERSION
             || 'bootstrapped version'
             ,
-          is_strict   => \$self->is_strict,
-          has_version => \$self->has_version,
+          is_strict      => \$self->is_strict,
+          has_version    => \$self->has_version,
+          filename_match => join(", ", @{ $self->filename_match }),
         },
       ),
     })
@@ -41,7 +42,7 @@ sub register_prereqs {
       phase => 'develop',
     },
     'Test::More'    => 0,
-    'Test::Version' => 1,
+    'Test::Version' => @{ $self->filename_match } > 0 ? '2.00' : '1',
   );
   return;
 }
@@ -59,6 +60,18 @@ has has_version => (
   lazy => 1,
   default => sub { 1 },
 );
+
+has filename_match => (
+  is      => 'ro',
+  isa     => 'ArrayRef',
+  lazy    => 1,
+  default => sub { [] },
+);
+
+around mvp_multivalue_args => sub {
+  my($orig, $self) = @_;
+  return ($self->$orig, 'filename_match');
+};
 
 __PACKAGE__->meta->make_immutable;
 1;
@@ -85,6 +98,10 @@ set L<Test::Version is_strict|Test::Version/is_strict>
 
 set L<Test::Version has_version|Test::Version/has_version>
 
+=attr filename_match
+
+set L<Test::Version filename_match|Test::Version/filename_match>
+
 =method register_prereqs
 
 Register L<Test::Version> as an a development prerequisite.
@@ -103,8 +120,9 @@ use Test::Version;
 my @imports = ( 'version_all_ok' );
 
 my $params = {
-    is_strict   => {{ $is_strict }},
-    has_version => {{ $has_version }},
+    is_strict      => {{ $is_strict }},
+    has_version    => {{ $has_version }},
+    filename_match => [ {{ $filename_match }} ],
 };
 
 push @imports, $params
