@@ -28,6 +28,17 @@ set [Test::Version is\_strict](https://metacpan.org/pod/Test::Version#is_strict)
 
 set [Test::Version has\_version](https://metacpan.org/pod/Test::Version#has_version)
 
+## filename\_match
+
+set [Test::Version filename\_match](https://metacpan.org/pod/Test::Version#filename_match)
+
+## finder
+
+This is the name of a [Dist::Zilla::Role::FileFinder](https://metacpan.org/pod/Dist::Zilla::Role::FileFinder) for finding files to check.
+If this is specified then `version_ok` will be used for each file that matches,
+otherwise `version_all_ok` will be used, and the file discovery will be handled
+by [Test::Version](https://metacpan.org/pod/Test::Version).
+
 # METHODS
 
 ## register\_prereqs
