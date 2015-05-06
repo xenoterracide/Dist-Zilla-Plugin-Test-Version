@@ -10,9 +10,9 @@ version 0.04
 
 in `dist.ini`
 
-        [Test::Version]
-        is_strict   = 0
-        has_version = 1
+    [Test::Version]
+    is_strict   = 0
+    has_version = 1
 
 # DESCRIPTION
 

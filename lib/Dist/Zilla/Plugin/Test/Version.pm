@@ -9,55 +9,55 @@ use namespace::autoclean;
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
 with qw(
-	Dist::Zilla::Role::TextTemplate
-	Dist::Zilla::Role::PrereqSource
+  Dist::Zilla::Role::TextTemplate
+  Dist::Zilla::Role::PrereqSource
 );
 
 around add_file => sub {
-	my ( $orig, $self, $file ) = @_;
+  my ( $orig, $self, $file ) = @_;
 
-	$self->$orig(
-		Dist::Zilla::File::InMemory->new({
-			name    => $file->name,
-			content => $self->fill_in_string(
-				$file->content,
-				{
-					name        => __PACKAGE__,
-					version     => __PACKAGE__->VERSION
-						|| 'bootstrapped version'
-						,
-					is_strict   => \$self->is_strict,
-					has_version => \$self->has_version,
-				},
-			),
-		})
-	);
+  $self->$orig(
+    Dist::Zilla::File::InMemory->new({
+      name    => $file->name,
+      content => $self->fill_in_string(
+        $file->content,
+        {
+          name        => __PACKAGE__,
+          version     => __PACKAGE__->VERSION
+            || 'bootstrapped version'
+            ,
+          is_strict   => \$self->is_strict,
+          has_version => \$self->has_version,
+        },
+      ),
+    })
+  );
 };
 
 sub register_prereqs {
-	my $self = shift;
-	$self->zilla->register_prereqs({
-			type  => 'requires',
-			phase => 'develop',
-		},
-		'Test::More'    => 0,
-		'Test::Version' => 1,
-	);
-	return;
+  my $self = shift;
+  $self->zilla->register_prereqs({
+      type  => 'requires',
+      phase => 'develop',
+    },
+    'Test::More'    => 0,
+    'Test::Version' => 1,
+  );
+  return;
 }
 
 has is_strict => (
-	is => 'ro',
-	isa => 'Bool',
-	lazy => 1,
-	default => sub { 0 },
+  is => 'ro',
+  isa => 'Bool',
+  lazy => 1,
+  default => sub { 0 },
 );
 
 has has_version => (
-	is => 'ro',
-	isa => 'Bool',
-	lazy => 1,
-	default => sub { 1 },
+  is => 'ro',
+  isa => 'Bool',
+  lazy => 1,
+  default => sub { 1 },
 );
 
 __PACKAGE__->meta->make_immutable;
@@ -69,9 +69,9 @@ __PACKAGE__->meta->make_immutable;
 
 in C<dist.ini>
 
-	[Test::Version]
-	is_strict   = 0
-	has_version = 1
+  [Test::Version]
+  is_strict   = 0
+  has_version = 1
 
 =head1 DESCRIPTION
 
