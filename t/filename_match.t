@@ -7,6 +7,9 @@ use Test::NoTabs;
 use File::chdir;
 use Path::Class qw( file );
 
+plan skip_all => 'test requires Test::Version 2.00'
+  unless eval qq{ use Test::Version 2.00; 1 };
+
 my $tzil = Builder->from_config(
   {
     dist_root    => 'corpus/a',

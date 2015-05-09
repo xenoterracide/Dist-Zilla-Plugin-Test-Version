@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
+  - Skip filenmae_match test unless Test::Version 2.00 or better
 
 1.00      2015-05-06
   - Add support for filename_match property
