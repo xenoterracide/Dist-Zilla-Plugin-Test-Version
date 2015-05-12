@@ -4,7 +4,7 @@ use Test::More;
 use Test::DZil;
 use Test::Script 1.05;
 use Test::NoTabs ();
-use Test::EOL    (); 
+use Test::EOL    ();
 use File::chdir;
 use Path::Class  qw( file );
 
