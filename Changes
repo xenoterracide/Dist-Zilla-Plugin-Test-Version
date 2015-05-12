@@ -2,6 +2,10 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+1.02      2015-05-12
+  - Restore friendlieness with Test::EOL when filename_match is not used.
+    Bug introduced in 1.00 (gh#3)
+
 1.01      2015-05-09
   - Skip filenmae_match test unless Test::Version 2.00 or better (gh#2) 
 
