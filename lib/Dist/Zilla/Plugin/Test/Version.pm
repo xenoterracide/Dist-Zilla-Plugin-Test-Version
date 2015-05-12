@@ -146,7 +146,7 @@ my @imports = qw( {{ @filenames ? 'version_ok' : 'version_all_ok' }} );
 my $params = {
     is_strict      => {{ $is_strict }},
     has_version    => {{ $has_version }},
-    {{ $filename_match ? "filename_match => [ $filename_match ]," : '' }}
+{{ $filename_match ? "    filename_match => [ $filename_match ]," : '' }}
 };
 
 push @imports, $params
