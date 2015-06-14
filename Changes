@@ -2,6 +2,9 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+1.03      2015-06-14
+  - Remove accidental prints introduced in previous version
+
 1.02      2015-05-12
   - Restore friendlieness with Test::EOL when filename_match is not used.
     Bug introduced in 1.00 (gh#3)
