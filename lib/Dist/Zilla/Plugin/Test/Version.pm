@@ -30,8 +30,6 @@ around add_file => sub {
       @{ $self->found_files };
   }
 
-  print "filename = $_\n" for @filenames;
-
   $self->$orig(
     Dist::Zilla::File::InMemory->new({
       name    => $file->name,
