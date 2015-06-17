@@ -32,6 +32,10 @@ set [Test::Version has\_version](https://metacpan.org/pod/Test::Version#has_vers
 
 set [Test::Version filename\_match](https://metacpan.org/pod/Test::Version#filename_match)
 
+## multiple
+
+set [Test::Version multiple](https://metacpan.org/pod/Test::Version#multiple)
+
 ## finder
 
 This is the name of a [Dist::Zilla::Role::FileFinder](https://metacpan.org/pod/Dist::Zilla::Role::FileFinder) for finding files to check.

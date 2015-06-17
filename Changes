@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
+  - Added multiple option (requires Test::Version 2.02)
 
 1.03      2015-06-14
   - Remove accidental prints introduced in previous version

@@ -42,6 +42,7 @@ around add_file => sub {
             ,
           is_strict      => \$self->is_strict,
           has_version    => \$self->has_version,
+          multiple       => \$self->multiple,
           filename_match => join(", ", @{ $self->filename_match }),
           filenames      => [ sort @filenames ],
         },
@@ -74,6 +75,13 @@ has has_version => (
   isa => 'Bool',
   lazy => 1,
   default => sub { 1 },
+);
+
+has multiple => (
+  is      => 'ro',
+  isa     => 'Bool',
+  lazy    => 1,
+  default => sub { 0 },
 );
 
 has filename_match => (
@@ -117,6 +125,10 @@ set L<Test::Version has_version|Test::Version/has_version>
 
 set L<Test::Version filename_match|Test::Version/filename_match>
 
+=attr multiple
+
+set L<Test::Version multiple|Test::Version/multiple>
+
 =attr finder
 
 This is the name of a L<Dist::Zilla::Role::FileFinder> for finding files to check.
@@ -144,6 +156,7 @@ my @imports = qw( {{ @filenames ? 'version_ok' : 'version_all_ok' }} );
 my $params = {
     is_strict      => {{ $is_strict }},
     has_version    => {{ $has_version }},
+    multiple       => {{ $multiple }},
 {{ $filename_match ? "    filename_match => [ $filename_match ]," : '' }}
 };
 
