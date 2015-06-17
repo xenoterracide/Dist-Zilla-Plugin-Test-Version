@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
+
+1.04      2015-06-17
   - Added multiple option (requires Test::Version 2.02)
 
 1.03      2015-06-14
