@@ -32,7 +32,7 @@ my $fn = $tzil
   ->tempdir
   ->subdir('build')
   ->subdir('xt')
-  ->subdir('release')
+  ->subdir('author')
   ->file('test-version.t')
   ;
 
@@ -43,10 +43,10 @@ note $fn->slurp;
 do {
   local $CWD = $tzil->tempdir->subdir('build')->stringify;
   #note "CWD = $CWD";
-  Test::NoTabs::notabs_ok      ( file(qw( xt release test-version.t ))->stringify, 'test has no tabs');
-  Test::EOL::eol_unix_ok       ( file(qw( xt release test-version.t ))->stringify, 'test has good EOL',   { trailing_whitespace => 1 });
-  script_compiles( file(qw( xt release test-version.t ))->stringify, 'check test compiles' );
-  script_runs    ( file(qw( xt release test-version.t ))->stringify, 'check test runs'     );
+  Test::NoTabs::notabs_ok      ( file(qw( xt author test-version.t ))->stringify, 'test has no tabs');
+  Test::EOL::eol_unix_ok       ( file(qw( xt author test-version.t ))->stringify, 'test has good EOL',   { trailing_whitespace => 1 });
+  script_compiles( file(qw( xt author test-version.t ))->stringify, 'check test compiles' );
+  script_runs    ( file(qw( xt author test-version.t ))->stringify, 'check test runs'     );
 };
 
 done_testing;

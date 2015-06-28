@@ -143,7 +143,7 @@ Register L<Test::Version> as an a development prerequisite.
 =cut
 
 __DATA__
-__[ xt/release/test-version.t ]__
+__[ xt/author/test-version.t ]__
 use strict;
 use warnings;
 use Test::More;
