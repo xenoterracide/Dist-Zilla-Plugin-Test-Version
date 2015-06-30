@@ -2,6 +2,11 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+1.05      2015-06-30
+  - Test is now generated as an author test (in xt/author instead of
+    xt/release) so it can be run on every commit rather than just before
+    release (Dave Rolsky gh#4)
+
 1.04      2015-06-17
   - Added multiple option (requires Test::Version 2.02)
 

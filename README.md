@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Test::Version - release Test::Version tests
 
 # VERSION
 
-version 1.04
+version 1.05
 
 # SYNOPSIS
 
