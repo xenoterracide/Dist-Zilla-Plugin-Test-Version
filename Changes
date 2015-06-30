@@ -13,7 +13,7 @@ Revision history for Dist-Zilla-Plugin-Test-Version
     Bug introduced in 1.00 (gh#3)
 
 1.01      2015-05-09
-  - Skip filenmae_match test unless Test::Version 2.00 or better (gh#2) 
+  - Skip filename_match test unless Test::Version 2.00 or better (gh#2)
 
 1.00      2015-05-06
   - Add support for filename_match property
