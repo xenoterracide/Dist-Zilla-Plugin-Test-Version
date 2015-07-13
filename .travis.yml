@@ -16,3 +16,5 @@ install:
    - "dzil listdeps --author --missing | cpanm --quiet"
 script:
    - dzil smoke --release --author
+
+sudo: false
