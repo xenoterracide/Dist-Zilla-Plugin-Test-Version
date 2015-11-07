@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::Plugin::Test::Version - release Test::Version tests
+Dist::Zilla::Plugin::Test::Version - Author Test::Version tests
 
 # VERSION
 
@@ -16,7 +16,7 @@ in `dist.ini`
 
 # DESCRIPTION
 
-This module will add a [Test::Version](https://metacpan.org/pod/Test::Version) test as a release test to your module.
+This module will add a [Test::Version](https://metacpan.org/pod/Test::Version) test as a author test to your module.
 
 # ATTRIBUTES
 
@@ -60,12 +60,12 @@ feature.
 
 # AUTHORS
 
-- Graham Ollis <plicease@cpan.org>
-- Caleb Cushing <xenoterracide@gmail.com>
+- Graham Ollis &lt;plicease@cpan.org>
+- Caleb Cushing &lt;xenoterracide@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2015 by Caleb Cushing <xenoterracide@gmail.com>.
+This software is Copyright (c) 2015 by Caleb Cushing &lt;xenoterracide@gmail.com>.
 
 This is free software, licensed under:
 

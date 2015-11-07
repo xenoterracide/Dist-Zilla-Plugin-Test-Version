@@ -102,7 +102,7 @@ around mvp_multivalue_args => sub {
 __PACKAGE__->meta->make_immutable;
 1;
 
-# ABSTRACT: release Test::Version tests
+# ABSTRACT: Author Test::Version tests
 
 =head1 SYNOPSIS
 
@@ -114,7 +114,7 @@ in C<dist.ini>
 
 =head1 DESCRIPTION
 
-This module will add a L<Test::Version> test as a release test to your module.
+This module will add a L<Test::Version> test as a author test to your module.
 
 =attr is_strict
 
