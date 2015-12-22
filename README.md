@@ -1,10 +1,6 @@
-# NAME
+# Dist::Zilla::Plugin::Test::Version [![Build Status](https://secure.travis-ci.org/plicease/Dist-Zilla-Plugin-Test-Version.png)](http://travis-ci.org/plicease/Dist-Zilla-Plugin-Test-Version)
 
-Dist::Zilla::Plugin::Test::Version - Author Test::Version tests
-
-# VERSION
-
-version 1.05
+Author Test::Version tests
 
 # SYNOPSIS
 
