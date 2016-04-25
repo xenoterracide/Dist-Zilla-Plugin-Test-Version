@@ -1,6 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
+
+1.06      2016-04-24
   - Handle the corner case where you specify a finder with no files
     a little more gracefully.
   - Compatability with Dist::Zilla 5.x, 6.x and hopefully 7.x
