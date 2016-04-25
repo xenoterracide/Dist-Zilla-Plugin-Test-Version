@@ -3,6 +3,7 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 {{$NEXT}}
   - Handle the corner case where you specify a finder with no files
     a little more gracefully.
+  - Compatability with Dist::Zilla 5.x, 6.x and hopefully 7.x
 
 1.05      2015-06-30
   - Test is now generated as an author test (in xt/author instead of

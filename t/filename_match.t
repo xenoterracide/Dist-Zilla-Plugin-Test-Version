@@ -6,7 +6,7 @@ use Test::Script 1.05;
 use Test::NoTabs ();
 use Test::EOL    ();
 use File::chdir;
-use Path::Class qw( file );
+use Path::Class qw( file dir );
 
 plan skip_all => 'test requires Test::Version 2.00'
   unless eval qq{ use Test::Version 2.00; 1 };
@@ -34,8 +34,7 @@ $tzil->build;
 
 is $tzil->prereqs->as_string_hash->{develop}->{requires}->{'Test::Version'}, '2.00', 'needs Test::Version 2.00';
 
-my $fn = $tzil
-  ->tempdir
+my $fn = dir($tzil->tempdir)
   ->subdir('build')
   ->subdir('xt')
   ->subdir('author')
@@ -47,7 +46,7 @@ ok ( -e $fn, 'test file exists');
 note $fn->slurp;
 
 do {
-  local $CWD = $tzil->tempdir->subdir('build')->stringify;
+  local $CWD = dir($tzil->tempdir)->subdir('build')->stringify;
   #note "CWD = $CWD";
   Test::NoTabs::notabs_ok      ( file(qw( xt author test-version.t ))->stringify, 'test has no tabs');
   Test::EOL::eol_unix_ok       ( file(qw( xt author test-version.t ))->stringify, 'test has good EOL',   { trailing_whitespace => 1 });

@@ -56,12 +56,12 @@ feature.
 
 # AUTHORS
 
-- Graham Ollis &lt;plicease@cpan.org>
-- Caleb Cushing &lt;xenoterracide@gmail.com>
+- Graham Ollis <plicease@cpan.org>
+- Caleb Cushing <xenoterracide@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2015 by Caleb Cushing &lt;xenoterracide@gmail.com>.
+This software is Copyright (c) 2016 by Caleb Cushing <xenoterracide@gmail.com>.
 
 This is free software, licensed under:
 
