@@ -1,14 +1,10 @@
 package Dist::Zilla::Plugin::Test::Version;
-use 5.006;
-use strict;
-use warnings;
-use namespace::autoclean;
-
-# VERSION
 
 use Moose;
-extends 'Dist::Zilla::Plugin::InlineFiles';
+
 with
+  'Dist::Zilla::Role::FileGatherer',
+  'Dist::Zilla::Role::FileMunger',
   'Dist::Zilla::Role::TextTemplate',
   'Dist::Zilla::Role::PrereqSource',
   'Dist::Zilla::Role::FileFinderUser' => {
@@ -18,9 +14,36 @@ with
   },
 ;
 
+use Sub::Exporter::ForMethods 'method_installer';
+use Data::Section 0.004 # fixed header_re
+    { installer => method_installer }, '-setup';
+use Moose::Util::TypeConstraints 'role_type';
+use namespace::autoclean;
 
-around add_file => sub {
-  my ( $orig, $self, $file ) = @_;
+# ABSTRACT: Author Test::Version tests
+# VERSION
+
+sub gather_files {
+  my($self) = @_;
+
+  require Dist::Zilla::File::InMemory;
+
+  $self->add_file(
+    $self->_file_obj(
+      Dist::Zilla::File::InMemory->new(
+        # PRs welcome: make configurable.
+        name => 'xt/author/test-version.t',
+        content => ${$self->section_data('__TEST__')},
+      )
+    )
+  );
+
+  return;
+}
+
+sub munge_files
+{
+  my($self) = @_;
 
   my @filenames;
   my $use_finder = 0;
@@ -32,27 +55,27 @@ around add_file => sub {
     $use_finder = 1;
   }
 
-  $self->$orig(
-    Dist::Zilla::File::InMemory->new({
-      name    => $file->name,
-      content => $self->fill_in_string(
-        $file->content,
-        {
-          name           => __PACKAGE__,
-          version        => __PACKAGE__->VERSION
-            || 'bootstrapped version'
-            ,
-          is_strict      => \$self->is_strict,
-          has_version    => \$self->has_version,
-          multiple       => \$self->multiple,
-          filename_match => join(", ", @{ $self->filename_match }),
-          filenames      => [ sort @filenames ],
-          use_finder     => $use_finder,
-        },
-      ),
-    })
+  my $file = $self->_file_obj;
+  $file->content(
+    $self->fill_in_string(
+      $file->content,
+      {
+        name           => __PACKAGE__,
+        version        => __PACKAGE__->VERSION
+          || 'bootstrapped version'
+          ,
+        is_strict      => \$self->is_strict,
+        has_version    => \$self->has_version,
+        multiple       => \$self->multiple,
+        filename_match => join(", ", @{ $self->filename_match }),
+        filenames      => [ sort @filenames ],
+        use_finder     => $use_finder,
+      },
+    )
   );
-};
+
+  return;
+}
 
 sub register_prereqs {
   my $self = shift;
@@ -94,6 +117,11 @@ has filename_match => (
   default => sub { [] },
 );
 
+has _file_obj => (
+  is  => 'rw',
+  isa => role_type('Dist::Zilla::Role::File'),
+);
+
 around mvp_multivalue_args => sub {
   my($orig, $self) = @_;
   return ($self->$orig, 'filename_match');
@@ -102,7 +130,6 @@ around mvp_multivalue_args => sub {
 __PACKAGE__->meta->make_immutable;
 1;
 
-# ABSTRACT: Author Test::Version tests
 
 =head1 SYNOPSIS
 
@@ -146,7 +173,7 @@ Register L<Test::Version> as an a development prerequisite.
 =cut
 
 __DATA__
-__[ xt/author/test-version.t ]__
+__[ __TEST__ ]__
 use strict;
 use warnings;
 use Test::More;
