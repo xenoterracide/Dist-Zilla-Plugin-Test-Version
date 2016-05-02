@@ -2,6 +2,16 @@ Revision history for Dist-Zilla-Plugin-Test-Version
 
 {{$NEXT}}
 
+1.07      2016-05-02
+  - Add an "adaptive" option for is_strict.  This allows you to require
+    strict checking for production releases, while being less strict for
+    trial releases.
+  - Create file during the gather stage, but evaluate the template during
+    the munge files stage, as with similar such plugins (exaple [Test::EOL]).
+  - require latest version of Test::Script.
+    Some smokers were barfing on an "argument list too long" error,
+    and this should fix that issue.
+
 1.06      2016-04-24
   - Handle the corner case where you specify a finder with no files
     a little more gracefully.
