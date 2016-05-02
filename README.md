@@ -20,6 +20,10 @@ This module will add a [Test::Version](https://metacpan.org/pod/Test::Version) t
 
 set [Test::Version is\_strict](https://metacpan.org/pod/Test::Version#is_strict)
 
+In addition to a boolean value, you may specify `adaptive` to indicate that
+is\_strict should be true for production releases, but false for trial or
+development releases.
+
 ## has\_version
 
 set [Test::Version has\_version](https://metacpan.org/pod/Test::Version#has_version)

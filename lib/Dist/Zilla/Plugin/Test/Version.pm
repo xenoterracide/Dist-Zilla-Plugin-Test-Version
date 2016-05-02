@@ -17,7 +17,7 @@ with
 use Sub::Exporter::ForMethods 'method_installer';
 use Data::Section 0.004 # fixed header_re
     { installer => method_installer }, '-setup';
-use Moose::Util::TypeConstraints 'role_type';
+use Moose::Util::TypeConstraints qw( role_type union enum );
 use namespace::autoclean;
 
 # ABSTRACT: Author Test::Version tests
@@ -64,7 +64,7 @@ sub munge_files
         version        => __PACKAGE__->VERSION
           || 'bootstrapped version'
           ,
-        is_strict      => \$self->is_strict,
+        is_strict      => \$self->_is_strict,
         has_version    => \$self->has_version,
         multiple       => \$self->multiple,
         filename_match => join(", ", @{ $self->filename_match }),
@@ -90,10 +90,20 @@ sub register_prereqs {
 }
 
 has is_strict => (
+  is      => 'ro',
+  isa     => union([ 'Bool', enum(['adaptive']) ]),
+  lazy    => 1,
+  default => sub { 0 },
+);
+
+has _is_strict => (
   is => 'ro',
   isa => 'Bool',
   lazy => 1,
-  default => sub { 0 },
+  default => sub {
+    my($self) = @_;
+    $self->is_strict eq 'adaptive' ? ($self->zilla->is_trial ? 0 : 1) : $self->is_strict
+  },
 );
 
 has has_version => (
@@ -146,6 +156,10 @@ This module will add a L<Test::Version> test as a author test to your module.
 =attr is_strict
 
 set L<Test::Version is_strict|Test::Version/is_strict>
+
+In addition to a boolean value, you may specify C<adaptive> to indicate that
+is_strict should be true for production releases, but false for trial or
+development releases.
 
 =attr has_version
 
