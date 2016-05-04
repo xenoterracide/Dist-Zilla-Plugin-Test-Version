@@ -26,7 +26,7 @@ subtest normal => sub {
 
   my($plugin) = grep { $_->isa('Dist::Zilla::Plugin::Test::Version') } @{ $tzil->plugins };
 
-  ok $plugin->_is_strict, "\$plugin->_is_strict = @{[ $plugin->_is_strict ]}";
+  ok $plugin->_is_strict, "\$plugin->_is_strict = 1 (@{[ $plugin->_is_strict ]})";
 
   my $fn = dir($tzil->tempdir)
     ->subdir('build')
@@ -63,7 +63,7 @@ subtest abbynormal => sub {
 
   my($plugin) = grep { $_->isa('Dist::Zilla::Plugin::Test::Version') } @{ $tzil->plugins };
 
-  ok !$plugin->_is_strict, "\$plugin->_is_strict = @{[ $plugin->_is_strict ]}";
+  ok !$plugin->_is_strict, "\$plugin->_is_strict = 0 (@{[ $plugin->_is_strict ]})";
 
   my $fn = dir($tzil->tempdir)
     ->subdir('build')
