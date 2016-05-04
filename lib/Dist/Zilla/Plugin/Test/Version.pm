@@ -97,10 +97,11 @@ has is_strict => (
 );
 
 has _is_strict => (
-  is => 'ro',
-  isa => 'Bool',
-  lazy => 1,
-  default => sub {
+  is       => 'ro',
+  isa      => 'Bool',
+  lazy     => 1,
+  init_arg => undef,
+  default  => sub {
     my($self) = @_;
     $self->is_strict eq 'adaptive' ? ($self->zilla->is_trial ? 0 : 1) : $self->is_strict
   },
