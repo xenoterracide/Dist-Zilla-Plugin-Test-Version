@@ -8,6 +8,9 @@ use Test::EOL    ();
 use File::chdir;
 use Path::Tiny;
 
+plan skip_all => 'test requires Test::Version 2.00'
+  unless eval qq{ use Test::Version 2.00; 1 };
+
 my $tzil = Builder->from_config(
   {
     dist_root    => 'corpus/a',
@@ -17,22 +20,25 @@ my $tzil = Builder->from_config(
       'source/dist.ini' => simple_ini(
         {},
         ['GatherDir'],
-        ['Test::Version']
+        ['Test::Version' => {
+          filename_match => [ 'sub { $_[0] !~ /ConfigData/ }', 'sub { 0 }' ],
+        }]
       ),
       'source/lib/Foo.pm' => "package Foo;\nour \$VERSION = 1.00;\n1;\n",
+      'source/lib/Foo/ConfigData.pm' => "package Foo::ConfigData;\n1;\n",
     }
   },
 );
 
 $tzil->build;
 
-is $tzil->prereqs->as_string_hash->{develop}->{requires}->{'Test::Version'}, '1', 'needs Test::Version 1';
+is $tzil->prereqs->as_string_hash->{develop}->{requires}->{'Test::Version'}, '2.00', 'needs Test::Version 2.00';
 
 my $fn = path($tzil->tempdir)->child('build', 'xt', 'author', 'test-version.t');
 
 ok ( -e $fn, 'test file exists');
 
-note $fn->slurp_raw;
+note $fn->slurp;
 
 do {
   local $CWD = path($tzil->tempdir)->child('build')->stringify;

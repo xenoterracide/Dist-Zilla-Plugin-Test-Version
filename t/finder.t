@@ -17,9 +17,15 @@ my $tzil = Builder->from_config(
       'source/dist.ini' => simple_ini(
         {},
         ['GatherDir'],
-        ['Test::Version']
+        ['FileFinder::ByName / MyFinder' => {
+          dir => 'lib/X1',
+        }],
+        ['Test::Version' => {
+          finder => 'MyFinder',
+        }]
       ),
-      'source/lib/Foo.pm' => "package Foo;\nour \$VERSION = 1.00;\n1;\n",
+      'source/lib/X1/Foo.pm' => "package X1::Foo;\nour \$VERSION = 1.00;\n1;\n",
+      'source/lib/X2/Bar.pm' => "package X2::Bar;\n1;\n",
     }
   },
 );
@@ -32,7 +38,7 @@ my $fn = path($tzil->tempdir)->child('build', 'xt', 'author', 'test-version.t');
 
 ok ( -e $fn, 'test file exists');
 
-note $fn->slurp_raw;
+note $fn->slurp;
 
 do {
   local $CWD = path($tzil->tempdir)->child('build')->stringify;

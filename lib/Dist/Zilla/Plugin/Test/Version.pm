@@ -1,89 +1,185 @@
 package Dist::Zilla::Plugin::Test::Version;
-use 5.006;
-use strict;
-use warnings;
-use namespace::autoclean;
-
-# VERSION
 
 use Moose;
-extends 'Dist::Zilla::Plugin::InlineFiles';
-with qw(
-	Dist::Zilla::Role::TextTemplate
-	Dist::Zilla::Role::PrereqSource
-);
 
-around add_file => sub {
-	my ( $orig, $self, $file ) = @_;
+with
+  'Dist::Zilla::Role::FileGatherer',
+  'Dist::Zilla::Role::FileMunger',
+  'Dist::Zilla::Role::TextTemplate',
+  'Dist::Zilla::Role::PrereqSource',
+  'Dist::Zilla::Role::FileFinderUser' => {
+    method           => 'found_files',
+    finder_arg_names => [ 'finder' ],
+    default_finders  => [],
+  },
+;
 
-	$self->$orig(
-		Dist::Zilla::File::InMemory->new({
-			name    => $file->name,
-			content => $self->fill_in_string(
-				$file->content,
-				{
-					name        => __PACKAGE__,
-					version     => __PACKAGE__->VERSION
-						|| 'bootstrapped version'
-						,
-					is_strict   => \$self->is_strict,
-					has_version => \$self->has_version,
-				},
-			),
-		})
-	);
-};
+use Sub::Exporter::ForMethods 'method_installer';
+use Data::Section 0.004 # fixed header_re
+    { installer => method_installer }, '-setup';
+use Moose::Util::TypeConstraints qw( role_type union enum );
+use namespace::autoclean;
+
+# ABSTRACT: Author Test::Version tests
+# VERSION
+
+sub gather_files {
+  my($self) = @_;
+
+  require Dist::Zilla::File::InMemory;
+
+  $self->add_file(
+    $self->_file_obj(
+      Dist::Zilla::File::InMemory->new(
+        # PRs welcome: make configurable.
+        name => 'xt/author/test-version.t',
+        content => ${$self->section_data('__TEST__')},
+      )
+    )
+  );
+
+  return;
+}
+
+sub munge_files
+{
+  my($self) = @_;
+
+  my @filenames;
+  my $use_finder = 0;
+
+  if(@{ $self->finder } > 0) {
+    @filenames = map { $_->name }
+      grep { not ($_->can('is_bytes') and $_->is_bytes) }
+      @{ $self->found_files };
+    $use_finder = 1;
+  }
+
+  my $file = $self->_file_obj;
+  $file->content(
+    $self->fill_in_string(
+      $file->content,
+      {
+        name           => __PACKAGE__,
+        version        => __PACKAGE__->VERSION
+          || 'bootstrapped version'
+          ,
+        is_strict      => \$self->_is_strict,
+        has_version    => \$self->has_version,
+        multiple       => \$self->multiple,
+        filename_match => join(", ", @{ $self->filename_match }),
+        filenames      => [ sort @filenames ],
+        use_finder     => $use_finder,
+      },
+    )
+  );
+
+  return;
+}
 
 sub register_prereqs {
-	my $self = shift;
-	$self->zilla->register_prereqs({
-			type  => 'requires',
-			phase => 'develop',
-		},
-		'Test::More'    => 0,
-		'Test::Version' => 1,
-	);
-	return;
+  my $self = shift;
+  $self->zilla->register_prereqs({
+      type  => 'requires',
+      phase => 'develop',
+    },
+    'Test::More'    => 0,
+    'Test::Version' => @{ $self->filename_match } > 0 ? '2.00' : '1',
+  );
+  return;
 }
 
 has is_strict => (
-	is => 'ro',
-	isa => 'Bool',
-	lazy => 1,
-	default => sub { 0 },
+  is      => 'ro',
+  isa     => union([ 'Bool', enum(['adaptive']) ]),
+  lazy    => 1,
+  default => sub { 0 },
+);
+
+has _is_strict => (
+  is       => 'ro',
+  isa      => 'Bool',
+  lazy     => 1,
+  init_arg => undef,
+  default  => sub {
+    my($self) = @_;
+    $self->is_strict eq 'adaptive' ? ($self->zilla->is_trial ? 0 : 1) : $self->is_strict
+  },
 );
 
 has has_version => (
-	is => 'ro',
-	isa => 'Bool',
-	lazy => 1,
-	default => sub { 1 },
+  is => 'ro',
+  isa => 'Bool',
+  lazy => 1,
+  default => sub { 1 },
 );
+
+has multiple => (
+  is      => 'ro',
+  isa     => 'Bool',
+  lazy    => 1,
+  default => sub { 0 },
+);
+
+has filename_match => (
+  is      => 'ro',
+  isa     => 'ArrayRef',
+  lazy    => 1,
+  default => sub { [] },
+);
+
+has _file_obj => (
+  is  => 'rw',
+  isa => role_type('Dist::Zilla::Role::File'),
+);
+
+around mvp_multivalue_args => sub {
+  my($orig, $self) = @_;
+  return ($self->$orig, 'filename_match');
+};
 
 __PACKAGE__->meta->make_immutable;
 1;
 
-# ABSTRACT: release Test::Version tests
 
 =head1 SYNOPSIS
 
 in C<dist.ini>
 
-	[Test::Version]
-	is_strict   = 0
-	has_version = 1
+  [Test::Version]
+  is_strict   = 0
+  has_version = 1
 
 =head1 DESCRIPTION
 
-This module will add a L<Test::Version> test as a release test to your module.
+This module will add a L<Test::Version> test as a author test to your module.
 
 =attr is_strict
 
 set L<Test::Version is_strict|Test::Version/is_strict>
 
+In addition to a boolean value, you may specify C<adaptive> to indicate that
+is_strict should be true for production releases, but false for trial or
+development releases.
+
 =attr has_version
 
 set L<Test::Version has_version|Test::Version/has_version>
+
+=attr filename_match
+
+set L<Test::Version filename_match|Test::Version/filename_match>
+
+=attr multiple
+
+set L<Test::Version multiple|Test::Version/multiple>
+
+=attr finder
+
+This is the name of a L<Dist::Zilla::Role::FileFinder> for finding files to check.
+If this is specified then C<version_ok> will be used for each file that matches,
+otherwise C<version_all_ok> will be used, and the file discovery will be handled
+by L<Test::Version>.
 
 =method register_prereqs
 
@@ -92,7 +188,7 @@ Register L<Test::Version> as an a development prerequisite.
 =cut
 
 __DATA__
-__[ xt/release/test-version.t ]__
+__[ __TEST__ ]__
 use strict;
 use warnings;
 use Test::More;
@@ -100,18 +196,23 @@ use Test::More;
 # generated by {{ $name }} {{ $version }}
 use Test::Version;
 
-my @imports = ( 'version_all_ok' );
+my @imports = qw( {{ $use_finder ? 'version_ok' : 'version_all_ok' }} );
 
 my $params = {
-    is_strict   => {{ $is_strict }},
-    has_version => {{ $has_version }},
+    is_strict      => {{ $is_strict }},
+    has_version    => {{ $has_version }},
+    multiple       => {{ $multiple }},
+{{ $filename_match ? "    filename_match => [ $filename_match ]," : '' }}
 };
 
 push @imports, $params
     if version->parse( $Test::Version::VERSION ) >= version->parse('1.002');
 
-
 Test::Version->import(@imports);
 
-version_all_ok;
+{{
+  $use_finder
+  ? @filenames > 0 ? join("\n", map { s/'/\\'/g; "version_ok('$_');" } @filenames) : '# finder found no files'
+  : 'version_all_ok;';
+}}
 done_testing;
