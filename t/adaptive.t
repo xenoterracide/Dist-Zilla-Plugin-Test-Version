@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 use Test::DZil;
-use Path::Class qw( dir );
+use Path::Tiny;
 
 subtest normal => sub {
 
@@ -28,16 +28,11 @@ subtest normal => sub {
 
   ok $plugin->_is_strict, "\$plugin->_is_strict = 1 (@{[ $plugin->_is_strict ]})";
 
-  my $fn = dir($tzil->tempdir)
-    ->subdir('build')
-    ->subdir('xt')
-    ->subdir('author')
-    ->file('test-version.t')
-    ;
+  my $fn = path($tzil->tempdir)->child('build', 'xt', 'author', 'test-version.t');
 
   ok ( -e $fn, 'test file exists');
 
-  note $fn->slurp;
+  note $fn->slurp_raw;
 
 };
 
@@ -65,16 +60,11 @@ subtest abbynormal => sub {
 
   ok !$plugin->_is_strict, "\$plugin->_is_strict = 0 (@{[ $plugin->_is_strict ]})";
 
-  my $fn = dir($tzil->tempdir)
-    ->subdir('build')
-    ->subdir('xt')
-    ->subdir('author')
-    ->file('test-version.t')
-    ;
+  my $fn = path($tzil->tempdir)->child('build', 'xt', 'author', 'test-version.t');
 
   ok ( -e $fn, 'test file exists');
 
-  note $fn->slurp;
+  note $fn->slurp_raw;
 
 };
 
