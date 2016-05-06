@@ -49,7 +49,7 @@ sub munge_files
   my $use_finder = 0;
 
   if(@{ $self->finder } > 0) {
-    @filenames = map { Path::Class::File->new($_->name)->relative('.')->stringify }
+    @filenames = map { $_->name }
       grep { not ($_->can('is_bytes') and $_->is_bytes) }
       @{ $self->found_files };
     $use_finder = 1;
